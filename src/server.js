@@ -1,20 +1,15 @@
 import { ApolloServer, gql } from 'apollo-server-express';
 import express from 'express';
-
+import { deftype , resolver } from './module';
+console.log(deftype);
 const app = express();
-const typeDefs = gql `
-    type Query {
-        hello: String
-        }
-`;
-
-const resolvers = {
-    Query: {
-        hello: () => 'hello',
-    },
-};
-
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer({ 
+    typeDefs: deftype,
+    resolvers: resolver,
+    context: ({ req}) => {
+        token: req.headers.authorization;
+    }
+,});
 
 export default class server {
     constructor(configuration) {

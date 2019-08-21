@@ -21,10 +21,13 @@
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "apollo-datasource-rest": "^0.6.1",
     "apollo-server-express": "^2.8.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "graphql": "^14.4.2"
+    "graphql": "^14.4.2",
+    "merge-graphql-schemas": "^1.7.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

@@ -1,27 +1,27 @@
-import { ApolloServer, gql } from 'apollo-server-express';
-import express from 'express';
-import { deftype , resolver } from './module';
-console.log(deftype);
-const app = express();
-const apolloServer = new ApolloServer({ 
-    typeDefs: deftype,
-    resolvers: resolver,
-    context: ({ req}) => {
-        token: req.headers.authorization;
+import { ApolloServer } from 'apollo-server-express'
+import { configuration } from './config'
+import express from 'express'
+import { typeDef, resolver } from '.'
+import TraineeApi from './services/traineeApi'
+import UserApi from './services/userApi'
+const app = express()
+const { port } = configuration
+const apolloServer = new ApolloServer({
+  typeDefs: typeDef,
+  resolvers: resolver,
+  dataSources: () => {
+    return {
+      traineeApi: new TraineeApi(),
+      userApi: new UserApi()
     }
-,});
-
-export default class server {
-    constructor(configuration) {
-        this.config = configuration;
-        this.run();
+  },
+  context: ({ req }) => {
+    return {
+      token: req.headers.authorization
     }
-    run() {
-        const { port } = this.config;
-        apolloServer.applyMiddleware({ app, path: '/' });
-        app.listen({ port }, () => {
-        console.log('server running>>>>>>>>>\nport ::::::::::', port);
-});
-    }
-}
-
+  }
+})
+apolloServer.applyMiddleware({ app, path: '/' })
+app.listen({ port }, () => {
+  console.log('server running>>>>>>>>>\nport ::::::::::', port)
+})

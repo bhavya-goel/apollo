@@ -1,9 +1,8 @@
 export default {
-    Query: {
-        me(parent, args, context, info) {
-        }
-    },
-    user(parent, args, context, info) {
-
+  Query: {
+    me (parent, args, context, info) {
+      const { dataSources } = context
+      return dataSources.userApi.getMe()
     }
+  }
 }

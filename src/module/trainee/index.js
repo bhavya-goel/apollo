@@ -1,1 +1,1 @@
-export { default as tresolver } from './query.js'
+export { default as traineeResolver } from './query.js'

@@ -9,6 +9,8 @@ type user {
     updatedAt: String
     originalID: String
 }
-type Query {
-    me: user
+type GetMe {
+    data: user
+    message: String
+    status: String
 }

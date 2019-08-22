@@ -7,6 +7,3 @@ type AllTrainee {
    status: String
    data: data
 }
-type Query {
-    getTrainee: AllTrainee
-}

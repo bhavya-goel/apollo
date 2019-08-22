@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src",
-    "lint": "./node_modules/eslint/bin/eslint.js . -c .eslintrc ",
+    "start": "babel-node src/server --copyfiles",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,7 +33,11 @@
   "devDependencies": {
     "eslint": "^6.2.1",
     "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-standard": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "nodemon": "^1.19.1"
   }
 }

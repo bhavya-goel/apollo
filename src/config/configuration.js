@@ -1,9 +1,9 @@
-import { config } from 'dotenv';
+import { config } from 'dotenv'
 
-config();
+config()
 
-const envar = process.env;
+const envar = process.env
 export const configuration = Object.freeze({
-    port: envar.PORT,
-    service_url: envar.SERVICE_URL,
-});
+  port: envar.PORT,
+  service_url: envar.SERVICE_URL
+})

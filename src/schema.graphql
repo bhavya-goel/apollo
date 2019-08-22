@@ -2,3 +2,9 @@ type Query {
     getTrainee: AllTrainee
     me: GetMe
 }
+type Mutation {
+    login(input: userLogin!): loginResponse!
+    createTrainee(input: traineeDetail!): GetMe!
+    updateTrainee(input: updateDetails!): traineeResponse!
+    deleteTrainee(id: String!): traineeResponse!
+}

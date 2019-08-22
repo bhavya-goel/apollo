@@ -14,4 +14,16 @@ export default class TraineeApi extends RESTDataSource {
     const result = await this.get('trainee')
     return result
   }
+
+  async createTrainee (email, password, name) {
+    return this.post('trainee', { email, password, name })
+  }
+
+  async updateTrainee (id, dataToUpdate) {
+    return this.put('trainee', { id, dataToUpdate })
+  }
+
+  async deleteTrainee (id) {
+    return this.delete(`trainee/${id}`)
+  }
 }

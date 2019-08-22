@@ -14,3 +14,12 @@ type GetMe {
     message: String
     status: String
 }
+input userLogin {
+    email: String!
+    password: String!
+}
+type loginResponse {
+    data: String
+    message: String
+    status: String
+}

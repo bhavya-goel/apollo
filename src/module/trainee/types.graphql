@@ -7,3 +7,20 @@ type AllTrainee {
    status: String
    data: data
 }
+input traineeDetail {
+    email: String
+    name: String
+    password: String
+}
+type traineeResponse {
+    message: String
+   status: String
+   data: id
+}
+type id {
+    id: String
+}
+input updateDetails{
+    id: String
+    dataToUpdate: traineeDetail
+}

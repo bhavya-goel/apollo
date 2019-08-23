@@ -2,7 +2,8 @@ export default {
   Query: {
     getTrainee (parent, args, context, info) {
       const { dataSources } = context
-      return dataSources.traineeApi.getTrainee()
+      const { skip, limit } = args
+      return dataSources.traineeApi.getTrainee(skip, limit)
     }
   }
 }

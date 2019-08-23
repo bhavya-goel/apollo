@@ -1,6 +1,6 @@
 type Query {
-    getTrainee: AllTrainee
-    me: GetMe
+    getTrainee(skip: Int, limit: Int): AllTrainee!
+    me: GetMe!
 }
 type Mutation {
     login(input: userLogin!): loginResponse!

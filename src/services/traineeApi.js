@@ -10,8 +10,8 @@ export default class TraineeApi extends RESTDataSource {
     request.headers.set('Authorization', this.context.token)
   }
 
-  async getTrainee () {
-    const result = await this.get('trainee')
+  async getTrainee (skip = 0, limit = 0) {
+    const result = await this.get('trainee', { skip, limit })
     return result
   }
 

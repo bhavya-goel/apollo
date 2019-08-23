@@ -17,6 +17,16 @@ type traineeResponse {
     status: String
     data: id
 }
+
+input userLogin {
+    email: String!
+    password: String!
+}
+type loginResponse {
+    data: String
+    message: String
+    status: String
+}
 type id {
     id: String
 }
@@ -26,3 +36,4 @@ input updateDetails{
 }
 union getTraineeResponse = AllTrainee | errorMessage
 union updateDeleteTraineeResponse = traineeResponse | errorMessage
+union loginResult = loginResponse | errorMessage

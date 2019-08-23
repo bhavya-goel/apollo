@@ -1,9 +1,9 @@
 type Query {
 getTrainee(skip: Int, limit: Int): getTraineeResponse
 me: meResult
+login(input: userLogin!): loginResult
 }
 type Mutation {
-login(input: userLogin!): loginResult
 createTrainee(input: traineeDetail!): meResult
 updateTrainee(input: updateDetails!): updateDeleteTraineeResponse
 deleteTrainee(id: String!): updateDeleteTraineeResponse

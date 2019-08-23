@@ -23,3 +23,11 @@ type loginResponse {
     message: String
     status: String
 }
+type errorMessage {
+error: String
+message: String
+status: String
+timestamp: String
+}
+union meResult = GetMe | errorMessage
+union loginResult = loginResponse | errorMessage

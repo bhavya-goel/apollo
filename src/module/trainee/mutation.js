@@ -15,5 +15,19 @@ export default {
       const { id } = args
       return dataSources.traineeApi.deleteTrainee(id)
     }
+  },
+
+  updateDeleteTraineeResponse: {
+    __resolveType (obj, context, info) {
+      if (obj.data) {
+        return 'traineeResponse'
+      }
+
+      if (obj.error) {
+        return 'errorMessage'
+      }
+
+      return null
+    }
   }
 }

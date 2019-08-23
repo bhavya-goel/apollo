@@ -14,8 +14,8 @@ input traineeDetail {
 }
 type traineeResponse {
     message: String
-   status: String
-   data: id
+    status: String
+    data: id
 }
 type id {
     id: String
@@ -24,3 +24,5 @@ input updateDetails{
     id: String
     dataToUpdate: traineeDetail
 }
+union getTraineeResponse = AllTrainee | errorMessage
+union updateDeleteTraineeResponse = traineeResponse | errorMessage

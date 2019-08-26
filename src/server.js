@@ -35,5 +35,6 @@ apolloServer.installSubscriptionHandlers(server)
 apolloServer.applyMiddleware({ app, path: '/' })
 
 server.listen({ port }, () => {
-  console.log('server running>>>>>>>>>\nport ::::::::::', port)
+  console.log(`Server ready at http://localhost:${port}${apolloServer.graphqlPath}`)
+  console.log(`Subscriptions ready at ws://localhost:${port}${apolloServer.subscriptionsPath}`)
 })

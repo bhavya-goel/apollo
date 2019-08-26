@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node src/server --copyfiles",
+    "start": "nodemon --exec babel-node src/server.js",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "graphql": "^14.4.2",
     "http": "0.0.0",
+    "husky": "^3.0.4",
     "merge-graphql-schemas": "^1.7.0",
     "path": "^0.12.7",
     "subscriptions-transport-ws": "^0.9.16"
@@ -41,5 +42,10 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "nodemon": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }

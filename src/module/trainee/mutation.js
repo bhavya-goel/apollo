@@ -1,4 +1,5 @@
 import { ApolloError } from 'apollo-server-core'
+import { pubSub, TRAINEE_ADDED, TRAINEE_UPDATED, TRAINEE_DELETED } from '../../subscription'
 
 export default {
   Mutation: {
@@ -9,6 +10,7 @@ export default {
       if (result.error) {
         throw new ApolloError(JSON.stringify(result))
       }
+      pubSub.publish(TRAINEE_ADDED, { traineeAdded: result })
       return result
     },
     async updateTrainee (parent, args, context) {
@@ -18,6 +20,7 @@ export default {
       if (result.error) {
         throw new ApolloError(JSON.stringify(result))
       }
+      pubSub.publish(TRAINEE_UPDATED, { traineeUpdated: result })
       return result
     },
     async deleteTrainee (parent, args, context) {
@@ -27,6 +30,7 @@ export default {
       if (result.error) {
         throw new ApolloError(JSON.stringify(result))
       }
+      pubSub.publish(TRAINEE_DELETED, { traineeDeleted: result })
       return result
     }
   }

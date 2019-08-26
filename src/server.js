@@ -1,10 +1,12 @@
 import { ApolloServer } from 'apollo-server-express'
 import { configuration } from './config'
 import express from 'express'
+import { createServer } from 'http'
 import { typeDef, resolver } from '.'
 import TraineeApi from './services/traineeApi'
 import UserApi from './services/userApi'
 const app = express()
+const server = createServer(app)
 const { port } = configuration
 const apolloServer = new ApolloServer({
   typeDefs: typeDef,
@@ -15,13 +17,23 @@ const apolloServer = new ApolloServer({
       userApi: new UserApi()
     }
   },
-  context: ({ req }) => {
-    return {
-      token: req.headers.authorization
+  context: ({ req, connection }) => {
+    if (connection) {
+      return {
+        token: connection.context.Authorization
+      }
+    } else {
+      return {
+        token: req.headers.authorization
+      }
     }
-  }
+  },
+  subscriptions: '/'
 })
+
+apolloServer.installSubscriptionHandlers(server)
 apolloServer.applyMiddleware({ app, path: '/' })
-app.listen({ port }, () => {
+
+server.listen({ port }, () => {
   console.log('server running>>>>>>>>>\nport ::::::::::', port)
 })

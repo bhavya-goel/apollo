@@ -8,3 +8,8 @@ createTrainee(input: traineeDetail!): GetMe
 updateTrainee(input: updateDetails!): traineeResponse
 deleteTrainee(id: String!): traineeResponse
 }
+type Subscription {
+    traineeAdded: GetMe
+    traineeDeleted: traineeResponse
+    traineeUpdated: traineeResponse
+}

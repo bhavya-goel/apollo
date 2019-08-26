@@ -2,38 +2,45 @@ type data {
     count: Int
     records: [user]!
 }
+
 type AllTrainee {
    message: String
    status: String
    data: data
 }
-input traineeDetail {
-    email: String
-    name: String
-    password: String
-}
+
 type traineeResponse {
     message: String
     status: String
     data: id
 }
 
-input userLogin {
-    email: String!
-    password: String!
-}
 type loginResponse {
     data: String
     message: String
     status: String
 }
+
 type id {
     id: String
 }
+
+type ApolloError {
+    message: String   
+}
+
+input traineeDetail {
+    email: String
+    name: String
+    password: String
+}
+
 input updateDetails{
     id: String
     dataToUpdate: traineeDetail
 }
-type ApolloError {
-    message: String   
+
+input userLogin {
+    email: String!
+    password: String!
 }

@@ -2,6 +2,7 @@ import { ApolloError } from 'apollo-server-core'
 
 export default {
   Query: {
+
     async getTrainee (parent, args, context, info) {
       const { dataSources } = context
       const { skip, limit } = args
@@ -11,6 +12,7 @@ export default {
       }
       return result
     },
+
     async login (parent, args, context) {
       const { dataSources } = context
       const { input: { email, password } } = args
@@ -20,5 +22,7 @@ export default {
       }
       return result
     }
+
   }
+
 }

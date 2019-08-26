@@ -5,18 +5,22 @@ import { createServer } from 'http'
 import { typeDef, resolver } from '.'
 import TraineeApi from './services/traineeApi'
 import UserApi from './services/userApi'
+
 const app = express()
 const server = createServer(app)
 const { port } = configuration
+
 const apolloServer = new ApolloServer({
   typeDefs: typeDef,
   resolvers: resolver,
+
   dataSources: () => {
     return {
       traineeApi: new TraineeApi(),
       userApi: new UserApi()
     }
   },
+
   context: ({ req, connection }) => {
     if (connection) {
       return {
@@ -28,6 +32,7 @@ const apolloServer = new ApolloServer({
       }
     }
   },
+
   subscriptions: '/'
 })
 

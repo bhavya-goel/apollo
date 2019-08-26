@@ -1,5 +1,6 @@
 import { RESTDataSource } from 'apollo-datasource-rest'
 import { configuration } from '../config'
+
 export default class TraineeApi extends RESTDataSource {
   constructor () {
     super()

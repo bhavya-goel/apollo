@@ -14,10 +14,4 @@ type GetMe {
     message: String
     status: String
 }
-type errorMessage {
-error: String
-message: String
-status: String
-timestamp: String
-}
-union meResult = GetMe | errorMessage
+

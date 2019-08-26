@@ -34,6 +34,6 @@ input updateDetails{
     id: String
     dataToUpdate: traineeDetail
 }
-union getTraineeResponse = AllTrainee | errorMessage
-union updateDeleteTraineeResponse = traineeResponse | errorMessage
-union loginResult = loginResponse | errorMessage
+type ApolloError {
+    message: String   
+}

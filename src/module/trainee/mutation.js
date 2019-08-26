@@ -1,33 +1,33 @@
+import { ApolloError } from 'apollo-server-core'
+
 export default {
   Mutation: {
-    createTrainee (parent, args, context) {
+    async createTrainee (parent, args, context) {
       const { dataSources } = context
       const { input: { email, password, name } } = args
-      return dataSources.traineeApi.createTrainee(email, password, name)
+      const result = await dataSources.traineeApi.createTrainee(email, password, name)
+      if (result.error) {
+        throw new ApolloError(JSON.stringify(result))
+      }
+      return result
     },
-    updateTrainee (parent, args, context) {
+    async updateTrainee (parent, args, context) {
       const { dataSources } = context
       const { input: { id, dataToUpdate } } = args
-      return dataSources.traineeApi.updateTrainee(id, dataToUpdate, name)
+      const result = await dataSources.traineeApi.updateTrainee(id, dataToUpdate)
+      if (result.error) {
+        throw new ApolloError(JSON.stringify(result))
+      }
+      return result
     },
-    deleteTrainee (parent, args, context) {
+    async deleteTrainee (parent, args, context) {
       const { dataSources } = context
       const { id } = args
-      return dataSources.traineeApi.deleteTrainee(id)
-    }
-  },
-
-  updateDeleteTraineeResponse: {
-    __resolveType (obj, context, info) {
-      if (obj.data) {
-        return 'traineeResponse'
+      const result = await dataSources.traineeApi.deleteTrainee(id)
+      if (result.error) {
+        throw new ApolloError(JSON.stringify(result))
       }
-
-      if (obj.error) {
-        return 'errorMessage'
-      }
-
-      return null
+      return result
     }
   }
 }

@@ -1,21 +1,14 @@
+import { ApolloError } from 'apollo-server-core'
+
 export default {
   Query: {
-    me (parent, args, context, info) {
+    async me (parent, args, context, info) {
       const { dataSources } = context
-      return dataSources.userApi.getMe()
-    }
-  },
-  meResult: {
-    __resolveType (obj, context, info) {
-      if (obj.data) {
-        return 'GetMe'
+      const result = await dataSources.userApi.getMe()
+      if (result.error) {
+        throw new ApolloError(JSON.stringify(result))
       }
-
-      if (obj.error) {
-        return 'errorMessage'
-      }
-
-      return null
+      return result
     }
   }
 }

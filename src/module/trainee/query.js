@@ -8,7 +8,7 @@ export default {
       const { skip, limit } = args
       const result = await dataSources.traineeApi.getTrainee(skip, limit)
       if (result.error) {
-        throw new ApolloError(JSON.stringify(result))
+        throw new ApolloError(result.message, result)
       }
       return result
     },
@@ -18,7 +18,7 @@ export default {
       const { input: { email, password } } = args
       const result = await dataSources.userApi.login(email, password)
       if (result.error) {
-        throw new ApolloError(JSON.stringify(result))
+        throw new ApolloError(result.message, result)
       }
       return result
     }

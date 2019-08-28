@@ -10,7 +10,7 @@ export default {
       const result = await dataSources.traineeApi.createTrainee(email, password, name)
 
       if (result.error) {
-        throw new ApolloError(JSON.stringify(result))
+        throw new ApolloError(result.message, result)
       }
 
       pubSub.publish(TRAINEE_ADDED, { traineeAdded: result })
@@ -24,7 +24,7 @@ export default {
       const result = await dataSources.traineeApi.updateTrainee(id, dataToUpdate)
 
       if (result.error) {
-        throw new ApolloError(JSON.stringify(result))
+        throw new ApolloError(result.message, result)
       }
 
       pubSub.publish(TRAINEE_UPDATED, { traineeUpdated: result })
@@ -38,7 +38,7 @@ export default {
       const result = await dataSources.traineeApi.deleteTrainee(id)
 
       if (result.error) {
-        throw new ApolloError(JSON.stringify(result))
+        throw new ApolloError(result.message, result)
       }
 
       pubSub.publish(TRAINEE_DELETED, { traineeDeleted: result })

@@ -5,3 +5,4 @@ export { default as resolver } from './module'
 
 const typesArray = fileLoader(path.join(__dirname, './**/*.graphql'))
 export const typeDef = mergeTypes(typesArray, { all: true })
+export { default as Server } from './server'

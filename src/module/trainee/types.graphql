@@ -25,10 +25,6 @@ type id {
     id: String
 }
 
-type ApolloError {
-    message: String   
-}
-
 input traineeDetail {
     email: String
     name: String

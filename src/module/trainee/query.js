@@ -1,5 +1,4 @@
-import { ApolloError } from 'apollo-server-core'
-
+import { Error } from '../../libs'
 export default {
   Query: {
 
@@ -8,7 +7,8 @@ export default {
       const { skip, limit } = args
       const result = await dataSources.traineeApi.getTrainee(skip, limit)
       if (result.error) {
-        throw new ApolloError(result.message, result)
+        const err = new Error(result)
+        err()
       }
       return result
     },
@@ -18,7 +18,8 @@ export default {
       const { input: { email, password } } = args
       const result = await dataSources.userApi.login(email, password)
       if (result.error) {
-        throw new ApolloError(result.message, result)
+        const err = new Error(result)
+        err()
       }
       return result
     }

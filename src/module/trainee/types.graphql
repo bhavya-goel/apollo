@@ -1,0 +1,12 @@
+type data {
+    count: Int
+    records: [user]!
+}
+type AllTrainee {
+   message: String
+   status: String
+   data: data
+}
+type Query {
+    getTrainee: AllTrainee
+}

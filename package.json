@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src",
+    "lint": "./node_modules/eslint/bin/eslint.js . -c .eslintrc ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,12 +22,18 @@
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "apollo-datasource-rest": "^0.6.1",
     "apollo-server-express": "^2.8.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "graphql": "^14.4.2"
+    "graphql": "^14.4.2",
+    "merge-graphql-schemas": "^1.7.0",
+    "path": "^0.12.7"
   },
   "devDependencies": {
+    "eslint": "^6.2.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.19.1"
   }
 }

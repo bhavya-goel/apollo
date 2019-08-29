@@ -5,8 +5,7 @@ export default {
       const { dataSources } = context
       const result = await dataSources.userApi.getMe()
       if (result.error) {
-        const err = new Error(result)
-        err()
+        throw new Error(result)
       }
       return result
     }

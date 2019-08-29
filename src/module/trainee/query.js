@@ -7,8 +7,7 @@ export default {
       const { skip, limit } = args
       const result = await dataSources.traineeApi.getTrainee(skip, limit)
       if (result.error) {
-        const err = new Error(result)
-        err()
+        throw new Error(result)
       }
       return result
     },
@@ -18,8 +17,7 @@ export default {
       const { input: { email, password } } = args
       const result = await dataSources.userApi.login(email, password)
       if (result.error) {
-        const err = new Error(result)
-        err()
+        throw new Error(result)
       }
       return result
     }

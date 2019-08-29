@@ -10,8 +10,7 @@ export default {
       const result = await dataSources.traineeApi.createTrainee(email, password, name)
 
       if (result.error) {
-        const err = new Error(result)
-        err()
+        throw new Error(result)
       }
 
       pubSub.publish(TRAINEE_ADDED, { traineeAdded: result })
@@ -25,8 +24,7 @@ export default {
       const result = await dataSources.traineeApi.updateTrainee(id, dataToUpdate)
 
       if (result.error) {
-        const err = new Error(result)
-        err()
+        throw new Error(result)
       }
       pubSub.publish(TRAINEE_UPDATED, { traineeUpdated: result })
       return result
@@ -39,8 +37,7 @@ export default {
       const result = await dataSources.traineeApi.deleteTrainee(id)
 
       if (result.error) {
-        const err = new Error(result)
-        err()
+        throw new Error(result)
       }
 
       pubSub.publish(TRAINEE_DELETED, { traineeDeleted: result })

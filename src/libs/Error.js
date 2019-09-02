@@ -25,7 +25,6 @@ export default class Error {
   }
 
   ApolloError (error) {
-    console.log('nchdch')
     throw new ApolloError(error.message, error.status, error)
   }
 }

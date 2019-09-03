@@ -1,9 +1,13 @@
-import { traineeResolver } from './trainee'
-import { userResolver } from './user'
+import { traineeMutation, traineeResolver, traineeSubscription } from './trainee'
+import { userMutation, userResolver } from './user'
 import { mergeResolvers } from 'merge-graphql-schemas'
+
 const resolver = [
   userResolver,
-  traineeResolver
+  traineeResolver,
+  userMutation,
+  traineeMutation,
+  traineeSubscription
 ]
 
 export default mergeResolvers(resolver)

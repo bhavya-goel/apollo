@@ -9,8 +9,10 @@ type user {
     updatedAt: String
     originalID: String
 }
+
 type GetMe {
     data: user
     message: String
     status: String
 }
+

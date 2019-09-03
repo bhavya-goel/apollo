@@ -6,6 +6,8 @@ import TraineeApi from './services/traineeApi'
 import UserApi from './services/userApi'
 
 const app = express()
+
+// http server
 const server = createServer(app)
 export default class Server {
   constructor (configuration) {
@@ -27,10 +29,12 @@ export default class Server {
       context: ({ req, connection }) => {
         if (connection) {
           return {
+            // for web socket connection
             token: connection.context.Authorization
           }
         } else {
           return {
+            // for http connection
             token: req.headers.authorization
           }
         }

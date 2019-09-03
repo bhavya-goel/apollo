@@ -1,6 +1,7 @@
 import { ApolloError, AuthenticationError, ForbiddenError, UserInputError } from 'apollo-server-core'
 export default class Error {
   constructor (error) {
+    // for runtime error resolving
     switch (error.status) {
       case 400: this.UserInputError(error)
         break

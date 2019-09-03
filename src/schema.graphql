@@ -1,13 +1,13 @@
 type Query {
-getTrainee(skip: Int, limit: Int): AllTrainee
-me: GetMe
-login(input: userLogin!): loginResponse
+    getTrainee(skip: Int, limit: Int): AllTrainee
+    me: GetMe
+    login(input: userLogin!): loginResponse
 }
 
 type Mutation {
-createTrainee(input: traineeDetail!): GetMe
-updateTrainee(input: updateDetails!): traineeResponse
-deleteTrainee(id: String!): traineeResponse
+    createTrainee(input: traineeDetail!): GetMe
+    updateTrainee(input: updateDetails!): traineeResponse
+    deleteTrainee(id: String!): traineeResponse
 }
 
 type Subscription {

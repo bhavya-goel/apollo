@@ -33,10 +33,6 @@ input InputtraineeDetail {
 
 input InputupdateDetails{
     id: String
-    dataToUpdate: traineeDetail
+    dataToUpdate: InputtraineeDetail
 }
 
-input userLoginInput {
-    email: String!
-    password: String!
-}

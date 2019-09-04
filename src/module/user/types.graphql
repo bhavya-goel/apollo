@@ -16,3 +16,7 @@ type GetMe {
     status: String
 }
 
+input userLoginInput {
+    email: String!
+    password: String!
+}

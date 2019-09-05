@@ -14,7 +14,7 @@ export default {
           return new Error(result)
         }
 
-        pubSub.publish(TRAINEE_ADDED, { traineeAdded: result })
+        pubSub.publish(TRAINEE_ADDED, { traineeAdded: { result, context } })
         return result
       } catch (err) {
         return err
@@ -31,7 +31,7 @@ export default {
         if (result.error) {
           return new Error(result)
         }
-        pubSub.publish(TRAINEE_UPDATED, { traineeUpdated: result })
+        pubSub.publish(TRAINEE_UPDATED, { traineeUpdated: { result, context } })
         return result
       } catch (err) {
         return err
@@ -49,7 +49,7 @@ export default {
           return new Error(result)
         }
 
-        pubSub.publish(TRAINEE_DELETED, { traineeDeleted: result })
+        pubSub.publish(TRAINEE_DELETED, { traineeDeleted: { result, context } })
         return result
       } catch (err) {
         return err

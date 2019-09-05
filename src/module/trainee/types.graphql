@@ -35,4 +35,9 @@ input InputupdateDetails{
     id: String
     dataToUpdate: InputtraineeDetail
 }
-
+type traineeAddResponse {
+    result: GetMe
+}
+type traineeSubscribeResponse {
+    result: traineeResponse
+}

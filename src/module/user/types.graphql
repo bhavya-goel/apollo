@@ -3,7 +3,7 @@ type user {
     _id: ID
     email: String
     role: String
-    createdBy: String
+    createdBy: createdBy
     createdAt: String
     updatedBy: String
     updatedAt: String
@@ -19,4 +19,7 @@ type GetMe {
 input userLoginInput {
     email: String!
     password: String!
+}
+type createdBy {
+    name: String
 }

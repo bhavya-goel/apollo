@@ -15,6 +15,20 @@ export default {
         return err
       }
     }
+  },
+  createdBy: {
+    async name (parent, args, context, info) {
+      try {
+        const { dataSources } = context
+        const result = await dataSources.userApi.getMeWithID(parent)
+        if (result.error) {
+          return new Error(result)
+        }
+        return result.data.name
+      } catch (err) {
+        return err
+      }
+    }
   }
 
 }

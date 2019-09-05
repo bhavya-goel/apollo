@@ -22,4 +22,8 @@ export default class UserApi extends RESTDataSource {
   async login (email, password) {
     return this.post('user/login', { email, password })
   }
+
+  async getMeWithID (id) {
+    return this.get(`user/me/${id}`)
+  }
 }

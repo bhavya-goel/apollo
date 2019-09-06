@@ -1,5 +1,5 @@
 type Query {
-    getTrainee(skip: Int, limit: Int): AllTraineeGet
+    getTrainee(skip: Int, limit: Int, sort: Int): AllTraineeGet
     me: GetMe
     login(input: userLoginInput!): loginResponse
 }

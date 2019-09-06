@@ -5,8 +5,8 @@ export default {
     async getTrainee (parent, args, context, info) {
       try {
         const { dataSources } = context
-        const { skip, limit } = args
-        const result = await dataSources.traineeApi.getTrainee(skip, limit)
+        const { skip, limit, sort } = args
+        const result = await dataSources.traineeApi.getTrainee(skip, limit, sort)
         if (result.error) {
           return new Error(result)
         }
@@ -16,7 +16,7 @@ export default {
       }
     }
   },
-  createdBy: {
+  userName: {
     async name (parent, args, context, info) {
       try {
         const { dataSources } = context

@@ -13,8 +13,8 @@ export default class TraineeApi extends RESTDataSource {
   }
 
   // hit GET api
-  async getTrainee (skip = 0, limit = 0) {
-    const result = await this.get('trainee', { skip, limit })
+  async getTrainee (skip = 0, limit = 10, sort = 1) {
+    const result = await this.get('trainee', { skip, limit, sort })
     return result
   }
 

@@ -3,9 +3,9 @@ type user {
     _id: ID
     email: String
     role: String
-    createdBy: createdBy
+    createdBy: userName
     createdAt: String
-    updatedBy: String
+    updatedBy: userName
     updatedAt: String
     originalID: String
 }
@@ -20,6 +20,6 @@ input userLoginInput {
     email: String!
     password: String!
 }
-type createdBy {
+type userName {
     name: String
 }

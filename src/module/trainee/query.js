@@ -7,12 +7,10 @@ export default {
         const { dataSources } = context
         const { skip, limit, sort } = args
         const result = await dataSources.traineeApi.getTrainee(skip, limit, sort)
-        if (result.error) {
-          return new Error(result)
-        }
         return result
       } catch (err) {
-        return err
+        const { extensions: { response: { body } } } = err
+        return new Error(body)
       }
     }
   },
@@ -21,12 +19,10 @@ export default {
       try {
         const { dataSources } = context
         const result = await dataSources.userApi.getMeWithID(parent)
-        if (result.error) {
-          return new Error(result)
-        }
         return result.data.name
       } catch (err) {
-        return err
+        const { extensions: { response: { body } } } = err
+        return new Error(body)
       }
     }
   }

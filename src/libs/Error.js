@@ -14,18 +14,19 @@ export default class Error {
   }
 
   AuthenticationError (error) {
-    throw new AuthenticationError(error.message)
+    console.log(typeof error.message)
+    throw new AuthenticationError(JSON.stringify(error.message))
   }
 
   ForbiddenError (error) {
-    throw new ForbiddenError(error.message)
+    throw new ForbiddenError(JSON.stringify(error.message))
   }
 
   UserInputError (error) {
-    throw new UserInputError(error.message)
+    throw new UserInputError(JSON.stringify(error.message))
   }
 
   ApolloError (error) {
-    throw new ApolloError(error.message, error.status, error)
+    throw new ApolloError(JSON.stringify(error.message), error.status, error)
   }
 }

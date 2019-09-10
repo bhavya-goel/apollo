@@ -6,12 +6,10 @@ export default {
       try {
         const { dataSources } = context
         const result = await dataSources.userApi.getMe()
-        if (result.error) {
-          return new Error(result)
-        }
         return result
       } catch (err) {
-        return err
+        const { extensions: { response: { body } } } = err
+        return new Error(body)
       }
     },
 
@@ -21,12 +19,10 @@ export default {
         const { dataSources } = context
         const { input: { email, password } } = args
         const result = await dataSources.userApi.login(email, password)
-        if (result.error) {
-          return new Error(result)
-        }
         return result
       } catch (err) {
-        return err
+        const { extensions: { response: { body } } } = err
+        return new Error(body)
       }
     }
 

@@ -9,15 +9,11 @@ export default {
         const { dataSources } = context
         const { input: { email, password, name } } = args
         const result = await dataSources.traineeApi.createTrainee(email, password, name)
-
-        if (result.error) {
-          return new Error(result)
-        }
-
         pubSub.publish(TRAINEE_ADDED, { traineeAdded: { result, context } })
         return result
       } catch (err) {
-        return err
+        const { extensions: { response: { body } } } = err
+        return new Error(body)
       }
     },
 
@@ -27,14 +23,11 @@ export default {
         const { dataSources } = context
         const { input: { id, dataToUpdate } } = args
         const result = await dataSources.traineeApi.updateTrainee(id, dataToUpdate)
-
-        if (result.error) {
-          return new Error(result)
-        }
         pubSub.publish(TRAINEE_UPDATED, { traineeUpdated: { result, context } })
         return result
       } catch (err) {
-        return err
+        const { extensions: { response: { body } } } = err
+        return new Error(body)
       }
     },
 
@@ -44,15 +37,11 @@ export default {
         const { dataSources } = context
         const { id } = args
         const result = await dataSources.traineeApi.deleteTrainee(id)
-
-        if (result.error) {
-          return new Error(result)
-        }
-
         pubSub.publish(TRAINEE_DELETED, { traineeDeleted: { result, context } })
         return result
       } catch (err) {
-        return err
+        const { extensions: { response: { body } } } = err
+        return new Error(body)
       }
     }
 

@@ -14,7 +14,6 @@ export default class Error {
   }
 
   AuthenticationError (error) {
-    console.log(typeof error.message)
     throw new AuthenticationError(JSON.stringify(error.message))
   }
 

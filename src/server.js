@@ -28,9 +28,13 @@ export default class Server {
 
       context: ({ req, connection }) => {
         if (connection) {
-          return {
-            // for web socket connection
-            token: connection.context.Authorization
+          if (connection.context.Authorization) {
+            return {
+              // for web socket connection
+              token: connection.context.Authorization
+            }
+          } else {
+            throw new Error('token not found')
           }
         } else {
           return {

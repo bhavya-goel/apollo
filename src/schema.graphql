@@ -15,3 +15,9 @@ type Subscription {
     traineeDeleted: traineeSubscribeResponse
     traineeUpdated: traineeSubscribeResponse
 }
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

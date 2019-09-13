@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import request from 'supertest'
 import { configuration } from '../config'
 import Server from '../server'

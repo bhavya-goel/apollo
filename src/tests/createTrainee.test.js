@@ -12,8 +12,8 @@ const app1 = server1.bootloader()
 const stub1 = stub(traineeApi.prototype, 'createTrainee')
 const stub2 = stub(userApi.prototype, 'getMeWithID')
 
-describe('login successfully', () => {
-  it('try to login successfully', async (done) => {
+describe('create trainee successfully', () => {
+  it('try to create trainee successfully', async (done) => {
     stub2.returns(serviceData.createByResponse)
     stub1.returns(serviceData.createSuccess)
     const res = await request(app1.server)

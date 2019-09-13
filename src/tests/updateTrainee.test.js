@@ -9,8 +9,8 @@ import updateTrainee from './mockData/updateTrainee'
 const server1 = new Server(configuration)
 const app1 = server1.bootloader()
 const stub1 = stub(traineeApi.prototype, 'updateTrainee')
-describe('delete trainee successfully', () => {
-  it('try to delete successfully', async (done) => {
+describe('update trainee successfully', () => {
+  it('try to update successfully', async (done) => {
     stub1.returns(serviceData.updateSucess)
     const res = await request(app1.server)
       .post('/')

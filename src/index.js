@@ -1,7 +1,6 @@
 import path from 'path'
 import { fileLoader, mergeTypes } from 'merge-graphql-schemas'
-import { makeExecutableSchema } from 'apollo-server-express';
-
+import { makeExecutableSchema } from 'apollo-server-express'
 import resolver from './module'
 
 // merge all the typedefs from all .graphql files

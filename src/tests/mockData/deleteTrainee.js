@@ -7,6 +7,15 @@ const createData = {
           id
         }
       }
-    }`
+    }`,
+  fail: `mutation{
+    deleteTrainee(id: "12345"){
+      message
+      status
+      data{
+        id
+      }
+    }
+  }`
 }
 export default createData

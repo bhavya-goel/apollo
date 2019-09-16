@@ -31,11 +31,14 @@ describe('login successfully', () => {
       .send({
         query: loginData.wrongEmailType
       })
+
     expect(res.body).toHaveProperty('errors')
+    expect(res.body.errors[0].message).toContain('Please enter email in format ( abc@successive.tech )special characters ( . -)allowed')
     expect(res.body.data.login).toEqual(null)
   })
 
   it('try to login with wrong email', async () => {
+    stub1.reset()
     stub1.throws(serviceData.emailError)
     const res = await request(app1.server)
       .post('/')
@@ -43,10 +46,12 @@ describe('login successfully', () => {
         query: loginData.wrongEmail
       })
     expect(res.body).toHaveProperty('errors')
+    expect(res.body.errors[0].message).toContain('Please sign up before login or provide correct email')
     expect(res.body.data.login).toEqual(null)
   })
 
   it('try to login with wrong password', async () => {
+    stub1.reset()
     stub1.throws(serviceData.passwordError)
     const res = await request(app1.server)
       .post('/')
@@ -54,6 +59,7 @@ describe('login successfully', () => {
         query: loginData.wrongPassword
       })
     expect(res.body).toHaveProperty('errors')
+    expect(res.body.errors[0].message).toContain('please provide correct pasword')
     expect(res.body.data.login).toEqual(null)
   })
 })

@@ -28,4 +28,19 @@ describe('delete trainee successfully', () => {
     expect(res.body.data.deleteTrainee.status).toEqual('200')
     done()
   })
+
+  it('try to delete trainee with wrong ID', async (done) => {
+    stub1.throws(serviceData.deleteFail)
+    const res = await request(app1.server)
+      .post('/')
+      .set('Authorization', token)
+      .send({
+        query: deleteTrainee.fail
+      })
+
+    expect(res.body).toHaveProperty('errors')
+    expect(res.body.errors[0].message).toContain('User not found')
+    expect(res.body.data.deleteTrainee).toEqual(null)
+    done()
+  })
 })

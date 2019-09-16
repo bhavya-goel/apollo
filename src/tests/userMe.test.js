@@ -28,4 +28,19 @@ describe('fetch user successfully', () => {
     expect(res.body.data.me.data).toHaveProperty('name')
     done()
   })
+
+  it('try to fetch user with wrong token', async (done) => {
+    stub1.throws(serviceData.userMeFail)
+    const res = await request(app1.server)
+      .post('/')
+      .set('Authorization', 'dscwdwqsqwqe')
+      .send({
+        query: userMe.success
+      })
+
+    expect(res.body).toHaveProperty('errors')
+    expect(res.body.errors[0].message).toContain('Authentication failed')
+    expect(res.body.data.me).toEqual(null)
+    done()
+  })
 })

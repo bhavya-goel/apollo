@@ -17,9 +17,63 @@ const ServiceData = {
     2O86XTsdHoI8L9Os`,
     status: '200'
   },
-  loginError: 'Please enter email in proper format',
-  emailError: 'Please sign up before login or provide correct email',
-  passwordError: 'please provide correct pasword',
+  loginError: {
+    extensions:
+      {
+        code: undefined,
+        response:
+          {
+            url: 'http://localhost:9000/api/user/login',
+            status: 400,
+            statusText: 'Bad Request',
+            body:
+              {
+                error: 'Bad Request',
+                message:
+              ['Please enter email in format ( abc@successive.tech )special characters ( . -)allowed'],
+                status: 400,
+                timestamp: '2019-09-16T05:44:41.985Z'
+              }
+          }
+      }
+  },
+  emailError: {
+    extensions:
+      {
+        code: undefined,
+        response:
+        {
+          url: 'http://localhost:9000/api/user/login',
+          status: 400,
+          statusText: 'Bad Request',
+          body: {
+            error: 'email not found',
+            message: 'Please sign up before login or provide correct email',
+            status: 400,
+            timestamp: '2019-09-16T06:14:13.089Z'
+          }
+        }
+      }
+  },
+  passwordError: {
+    extensions:
+      {
+        code: undefined,
+        response:
+          {
+            url: 'http://localhost:9000/api/user/login',
+            status: 400,
+            statusText: 'Bad Request',
+            body:
+            {
+              error: 'password not matched',
+              message: 'please provide correct pasword',
+              status: 400,
+              timestamp: '2019-09-16T06:17:17.154Z'
+            }
+          }
+      }
+  },
   userMeSuccess: {
     data: {
       name: 'headTrainer',
@@ -35,6 +89,25 @@ const ServiceData = {
     message: 'User details fetched',
     status: '200'
   },
+  userMeFail: {
+    extensions:
+   {
+     code: 'UNAUTHENTICATED',
+     response:
+      {
+        url: 'http://localhost:9000/api/user/me',
+        status: 401,
+        statusText: 'Unauthorized',
+        body:
+        {
+          error: 'Forbidden',
+          message: 'Authentication failed',
+          status: 401,
+          timestamp: '2019-09-16T06:31:48.695Z'
+        }
+      }
+   }
+  },
   createSuccess: {
     data: {
       name: 'y',
@@ -49,6 +122,46 @@ const ServiceData = {
     },
     message: 'Trainee Created Successfully',
     status: '200'
+  },
+  createEmailFail: {
+    extensions:
+      {
+        code: undefined,
+        response:
+        {
+          url: 'http://localhost:9000/api/trainee',
+          status: 400,
+          statusText: 'Bad Request',
+          body:
+          {
+            error: 'Bad Request',
+            message: 'email exists',
+            status: 400,
+            timestamp: '2019-09-16T06:40:51.211Z'
+          }
+        }
+      }
+  },
+  createWrongInput: {
+    extensions:
+      {
+        code: undefined,
+        response:
+        {
+          url: 'http://localhost:9000/api/trainee',
+          status: 400,
+          statusText: 'Bad Request',
+          body:
+          {
+            error: 'Bad Request',
+            message: ['Please enter email in proper format',
+              'enter a alphanumeric name',
+              'password cannot be empty'],
+            status: 400,
+            timestamp: '2019-09-16T06:40:51.211Z'
+          }
+        }
+      }
   },
   getAllSuccess: {
     message: 'Successfully fetched trainees',
@@ -76,12 +189,88 @@ const ServiceData = {
       id: '5d7608fea646f0427670cfe8'
     }
   },
+  deleteFail: {
+    extensions:
+    {
+      code: undefined,
+      response:
+        {
+          url: 'http://localhost:9000/api/trainee/5d7608fea646f0427670cfe8',
+          status: 400,
+          statusText: 'Bad Request',
+          body:
+          {
+            error: 'Bad Request',
+            message: 'User not found',
+            status: 400,
+            timestamp: '2019-09-16T06:58:45.274Z'
+          }
+        }
+    }
+  },
   updateSucess: {
     message: 'Trainee Updated Successfully',
     status: '200',
     data: {
       id: '5d7608f2a646f0427670cfe6'
     }
+  },
+  updateWrongID: {
+    extensions:
+   {
+     code: undefined,
+     response:
+      {
+        url: 'http://localhost:9000/api/trainee',
+        status: 400,
+        statusText: 'Bad Request',
+        body:
+        {
+          error: 'Bad Request',
+          message: 'User not found',
+          status: 400,
+          timestamp: '2019-09-16T07:06:34.856Z'
+        }
+      }
+   }
+  },
+  updateWithAlreadyEmail: {
+    extensions:
+   {
+     code: undefined,
+     response:
+      {
+        url: 'http://localhost:9000/api/trainee',
+        status: 400,
+        statusText: 'Bad Request',
+        body:
+        {
+          error: 'Bad Request',
+          message: 'email exists',
+          status: 400,
+          timestamp: '2019-09-16T07:06:34.856Z'
+        }
+      }
+   }
+  },
+  updateWithWrongData: {
+    extensions:
+   {
+     code: undefined,
+     response:
+      {
+        url: 'http://localhost:9000/api/trainee',
+        status: 400,
+        statusText: 'Bad Request',
+        body:
+        {
+          error: 'Bad Request',
+          message: ['enter an alphanumeric name,password cannot be empty'],
+          status: 400,
+          timestamp: '2019-09-16T07:06:34.856Z'
+        }
+      }
+   }
   },
   createByResponse: {
     name: 'headTrainer'

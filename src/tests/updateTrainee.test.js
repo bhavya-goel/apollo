@@ -28,4 +28,51 @@ describe('update trainee successfully', () => {
     expect(res.body.data.updateTrainee.status).toEqual('200')
     done()
   })
+
+  it('try to update trainee with existing email', async (done) => {
+    stub1.throws(serviceData.updateWithAlreadyEmail)
+    const res = await request(app1.server)
+      .post('/')
+      .set('Authorization', token)
+      .send({
+        query: updateTrainee.emailExists
+      })
+
+    expect(res.body).toHaveProperty('errors')
+    expect(res.body.errors[0].message).toContain('email exists')
+    expect(res.body.data.updateTrainee).toEqual(null)
+    done()
+  })
+
+  it('try to update trainee with wrong ID', async (done) => {
+    stub1.reset()
+    stub1.throws(serviceData.updateWrongID)
+    const res = await request(app1.server)
+      .post('/')
+      .set('Authorization', token)
+      .send({
+        query: updateTrainee.wrongID
+      })
+
+    expect(res.body).toHaveProperty('errors')
+    expect(res.body.errors[0].message).toContain('User not found')
+    expect(res.body.data.updateTrainee).toEqual(null)
+    done()
+  })
+
+  it('try to update trainee with wrong dataToUpdate type', async (done) => {
+    stub1.reset()
+    stub1.throws(serviceData.updateWithWrongData)
+    const res = await request(app1.server)
+      .post('/')
+      .set('Authorization', token)
+      .send({
+        query: updateTrainee.wrongDataToUpdate
+      })
+
+    expect(res.body).toHaveProperty('errors')
+    expect(res.body.errors[0].message).toContain('enter an alphanumeric name,password cannot be empty')
+    expect(res.body.data.updateTrainee).toEqual(null)
+    done()
+  })
 })

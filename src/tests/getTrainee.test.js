@@ -6,6 +6,7 @@ import traineeApi from '../services/traineeApi'
 import serviceData from './mockData/serviceData'
 import getData from './mockData/getTrainee'
 import userApi from '../services/userApi'
+import token from './mockData/token'
 
 const server1 = new Server(configuration)
 const app1 = server1.bootloader()
@@ -18,6 +19,7 @@ describe('get All trainees successfully', () => {
     stub1.returns(serviceData.getAllSuccess)
     const res = await request(app1.server)
       .post('/')
+      .set('Authorization', token)
       .send({
         query: getData.success
       })

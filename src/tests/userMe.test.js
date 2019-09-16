@@ -5,6 +5,7 @@ import { stub } from 'sinon'
 import userApi from '../services/userApi'
 import serviceData from './mockData/serviceData'
 import userMe from './mockData/userMe'
+import token from './mockData/token'
 
 const server1 = new Server(configuration)
 const app1 = server1.bootloader()
@@ -17,6 +18,7 @@ describe('fetch user successfully', () => {
     stub1.returns(serviceData.userMeSuccess)
     const res = await request(app1.server)
       .post('/')
+      .set('Authorization', token)
       .send({
         query: userMe.success
       })

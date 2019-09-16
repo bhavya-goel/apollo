@@ -5,6 +5,7 @@ import { stub } from 'sinon'
 import traineeApi from '../services/traineeApi'
 import serviceData from './mockData/serviceData'
 import deleteTrainee from './mockData/deleteTrainee'
+import token from './mockData/token'
 
 const server1 = new Server(configuration)
 const app1 = server1.bootloader()
@@ -14,6 +15,7 @@ describe('delete trainee successfully', () => {
     stub1.returns(serviceData.deleteSuccess)
     const res = await request(app1.server)
       .post('/')
+      .set('Authorization', token)
       .send({
         query: deleteTrainee.success
       })

@@ -27,11 +27,12 @@ describe('subscription test cases', () => {
         }
       }`
     const result = await graphql(schema, query)
-    expect(result.data.traineeAdded.result).toHaveProperty('message')
-    expect(result.data.traineeAdded.result.message).toEqual('Trainee Created Successfully')
-    expect(result.data.traineeAdded.result).toHaveProperty('data')
-    expect(result.data.traineeAdded.result.data).toHaveProperty('name')
-    expect(result.data.traineeAdded.result.data.name).toEqual('y')
+    const { data: { traineeAdded } } = result
+    expect(traineeAdded.result).toHaveProperty('message')
+    expect(traineeAdded.result.message).toEqual('Trainee Created Successfully')
+    expect(traineeAdded.result).toHaveProperty('data')
+    expect(traineeAdded.result.data).toHaveProperty('name')
+    expect(traineeAdded.result.data.name).toEqual('y')
     done()
   })
   it('trainee Updated', async (done) => {
@@ -57,16 +58,17 @@ describe('subscription test cases', () => {
         }
       }`
     const result = await graphql(schema, query)
-    expect(result.data.traineeUpdated.result).toHaveProperty('message')
-    expect(result.data.traineeUpdated.result.message).toEqual('Trainee Updated Successfully')
-    expect(result.data.traineeUpdated.result).toHaveProperty('data')
-    expect(result.data.traineeUpdated.result.data).toHaveProperty('id')
-    expect(result.data.traineeUpdated.result.data.id).toEqual('5d7608f2a646f0427670cfe6')
+    const { data: { traineeUpdated } } = result
+    expect(traineeUpdated.result).toHaveProperty('message')
+    expect(traineeUpdated.result.message).toEqual('Trainee Updated Successfully')
+    expect(traineeUpdated.result).toHaveProperty('data')
+    expect(traineeUpdated.result.data).toHaveProperty('id')
+    expect(traineeUpdated.result.data.id).toEqual('5d7608f2a646f0427670cfe6')
     done()
   })
   it('trainee deleted', async (done) => {
     addMockFunctionsToSchema({
-      schema: schema,
+      schema,
       mocks: {
         traineeSubscribeResponse: () => {
           return {
@@ -87,11 +89,12 @@ describe('subscription test cases', () => {
         }
       }`
     const result = await graphql(schema, query)
-    expect(result.data.traineeDeleted.result).toHaveProperty('message')
-    expect(result.data.traineeDeleted.result.message).toEqual('Trainee Deleted Successfully')
-    expect(result.data.traineeDeleted.result).toHaveProperty('data')
-    expect(result.data.traineeDeleted.result.data).toHaveProperty('id')
-    expect(result.data.traineeDeleted.result.data.id).toEqual('5d7608fea646f0427670cfe8')
+    const { data: { traineeDeleted } } = result
+    expect(traineeDeleted.result).toHaveProperty('message')
+    expect(traineeDeleted.result.message).toEqual('Trainee Deleted Successfully')
+    expect(traineeDeleted.result).toHaveProperty('data')
+    expect(traineeDeleted.result.data).toHaveProperty('id')
+    expect(traineeDeleted.result.data.id).toEqual('5d7608fea646f0427670cfe8')
     done()
   })
 })

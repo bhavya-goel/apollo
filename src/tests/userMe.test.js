@@ -22,10 +22,11 @@ describe('fetch user successfully', () => {
       .send({
         query: userMe.success
       })
-    expect(res.body.data.me).toHaveProperty('data')
-    expect(res.body.data.me).toHaveProperty('message')
-    expect(res.body.data.me).toHaveProperty('status')
-    expect(res.body.data.me.data).toHaveProperty('name')
+    const { body: { data: { me } } } = res
+    expect(me).toHaveProperty('data')
+    expect(me).toHaveProperty('message')
+    expect(me).toHaveProperty('status')
+    expect(me.data).toHaveProperty('name')
     done()
   })
 
@@ -37,10 +38,10 @@ describe('fetch user successfully', () => {
       .send({
         query: userMe.success
       })
-
+    const { body: { errors, data } } = res
     expect(res.body).toHaveProperty('errors')
-    expect(res.body.errors[0].message).toContain('Authentication failed')
-    expect(res.body.data.me).toEqual(null)
+    expect(errors[0].message).toContain('Authentication failed')
+    expect(data.me).toEqual(null)
     done()
   })
 })

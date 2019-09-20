@@ -19,24 +19,24 @@ const {
     traineeDeleted
   }
 } = subscription
-stub(traineeAdded, 'subscribe').returns(serviceData.createSuccess)
-stub(traineeUpdated, 'subscribe').returns(serviceData.updateSucess)
-stub(traineeDeleted, 'subscribe').returns(serviceData.deleteSuccess)
+stub(traineeAdded, 'subscribe').returns(createSuccess)
+stub(traineeUpdated, 'subscribe').returns(updateSucess)
+stub(traineeDeleted, 'subscribe').returns(deleteSuccess)
 
 describe('subscription test cases', () => {
   it('trainee Added', (done) => {
     const result = traineeAdded.subscribe()
-    expect(result).toEqual(serviceData.createSuccess)
+    expect(result).toEqual(createSuccess)
     done()
   })
   it('trainee Updated', (done) => {
     const result = traineeUpdated.subscribe()
-    expect(result).toEqual(serviceData.updateSucess)
+    expect(result).toEqual(updateSucess)
     done()
   })
   it('trainee Deleted', (done) => {
     const result = traineeDeleted.subscribe()
-    expect(result).toEqual(serviceData.deleteSuccess)
+    expect(result).toEqual(deleteSuccess)
     done()
   })
 })

@@ -23,14 +23,14 @@ describe('create trainee successfully', () => {
       .send({
         query: createData.success
       })
-
-    expect(res.body.data.createTrainee).toHaveProperty('data')
-    expect(res.body.data.createTrainee.data).toHaveProperty('name')
-    expect(res.body.data.createTrainee.data.name).toEqual('y')
-    expect(res.body.data.createTrainee).toHaveProperty('message')
-    expect(res.body.data.createTrainee.message).toEqual('Trainee Created Successfully')
-    expect(res.body.data.createTrainee).toHaveProperty('status')
-    expect(res.body.data.createTrainee.status).toEqual('200')
+    const { body: { data: { createTrainee } } } = res
+    expect(createTrainee).toHaveProperty('data')
+    expect(createTrainee.data).toHaveProperty('name')
+    expect(createTrainee.data.name).toEqual('y')
+    expect(createTrainee).toHaveProperty('message')
+    expect(createTrainee.message).toEqual('Trainee Created Successfully')
+    expect(createTrainee).toHaveProperty('status')
+    expect(createTrainee.status).toEqual('200')
     done()
   })
 
@@ -42,10 +42,10 @@ describe('create trainee successfully', () => {
       .send({
         query: createData.success
       })
-
+    const { body: { errors, data } } = res
     expect(res.body).toHaveProperty('errors')
-    expect(res.body.errors[0].message).toContain('email exists')
-    expect(res.body.data.createTrainee).toEqual(null)
+    expect(errors[0].message).toContain('email exists')
+    expect(data.createTrainee).toEqual(null)
     done()
   })
 
@@ -58,12 +58,12 @@ describe('create trainee successfully', () => {
       .send({
         query: createData.wrongInput
       })
-
+    const { body: { errors, data } } = res
     expect(res.body).toHaveProperty('errors')
-    expect(res.body.errors[0].message).toContain('Please enter email in proper format')
-    expect(res.body.errors[0].message).toContain('enter a alphanumeric name')
-    expect(res.body.errors[0].message).toContain('password cannot be empty')
-    expect(res.body.data.createTrainee).toEqual(null)
+    expect(errors[0].message).toContain('Please enter email in proper format')
+    expect(errors[0].message).toContain('enter a alphanumeric name')
+    expect(errors[0].message).toContain('password cannot be empty')
+    expect(data.createTrainee).toEqual(null)
     done()
   })
 })

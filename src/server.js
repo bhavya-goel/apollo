@@ -1,24 +1,21 @@
 import { ApolloServer } from 'apollo-server-express'
 import express from 'express'
 import { createServer } from 'http'
-import { typeDef, resolver } from '.'
+import { schema } from '.'
 import TraineeApi from './services/traineeApi'
 import UserApi from './services/userApi'
 
-const app = express()
-
-// http server
-const server = createServer(app)
 export default class Server {
   constructor (configuration) {
     this.config = configuration
+    this.app = express()
+    this.server = createServer(this.app)
   }
 
   bootloader () {
+    const { app, server } = this
     this.apolloServer = new ApolloServer({
-      typeDefs: typeDef,
-      resolvers: resolver,
-
+      schema,
       dataSources: () => {
         return {
           traineeApi: new TraineeApi(),
@@ -48,14 +45,15 @@ export default class Server {
     })
     this.apolloServer.installSubscriptionHandlers(server)
     this.apolloServer.applyMiddleware({ app, path: '/' })
-    this.run()
+    return this
   }
 
-  run () {
+  async run () {
     const { port } = this.config
-    server.listen({ port }, () => {
+    await this.server.listen({ port }, () => {
       console.log(`Server ready at http://localhost:${port}${this.apolloServer.graphqlPath}`)
       console.log(`Subscriptions ready at ws://localhost:${port}${this.apolloServer.subscriptionsPath}`)
     })
+    return this
   }
 }

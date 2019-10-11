@@ -19,13 +19,14 @@ describe('delete trainee successfully', () => {
       .send({
         query: deleteTrainee.success
       })
-    expect(res.body.data.deleteTrainee).toHaveProperty('data')
-    expect(res.body.data.deleteTrainee.data).toHaveProperty('id')
-    expect(res.body.data.deleteTrainee.data.id).toEqual('5d7608fea646f0427670cfe8')
-    expect(res.body.data.deleteTrainee).toHaveProperty('message')
-    expect(res.body.data.deleteTrainee.message).toEqual('Trainee Deleted Successfully')
-    expect(res.body.data.deleteTrainee).toHaveProperty('status')
-    expect(res.body.data.deleteTrainee.status).toEqual('200')
+    const { body: { data: { deleteTrainee: delTrainee } } } = res
+    expect(delTrainee).toHaveProperty('data')
+    expect(delTrainee.data).toHaveProperty('id')
+    expect(delTrainee.data.id).toEqual('5d7608fea646f0427670cfe8')
+    expect(delTrainee).toHaveProperty('message')
+    expect(delTrainee.message).toEqual('Trainee Deleted Successfully')
+    expect(delTrainee).toHaveProperty('status')
+    expect(delTrainee.status).toEqual('200')
     done()
   })
 
@@ -37,10 +38,10 @@ describe('delete trainee successfully', () => {
       .send({
         query: deleteTrainee.fail
       })
-
+    const { body: { errors, data } } = res
     expect(res.body).toHaveProperty('errors')
-    expect(res.body.errors[0].message).toContain('User not found')
-    expect(res.body.data.deleteTrainee).toEqual(null)
+    expect(errors[0].message).toContain('User not found')
+    expect(data.deleteTrainee).toEqual(null)
     done()
   })
 })

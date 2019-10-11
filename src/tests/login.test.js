@@ -17,10 +17,11 @@ describe('login successfully', () => {
       .send({
         query: loginData.loginSuccess
       })
-    expect(res.body.data.login).toHaveProperty('data')
-    expect(res.body.data.login).toHaveProperty('message')
-    expect(res.body.data.login).toHaveProperty('status')
-    expect(res.body.data.login.status).toEqual('200')
+    const { body: { data: { login } } } = res
+    expect(login).toHaveProperty('data')
+    expect(login).toHaveProperty('message')
+    expect(login).toHaveProperty('status')
+    expect(login.status).toEqual('200')
     done()
   })
 
@@ -31,10 +32,10 @@ describe('login successfully', () => {
       .send({
         query: loginData.wrongEmailType
       })
-
+    const { body: { errors, data } } = res
     expect(res.body).toHaveProperty('errors')
-    expect(res.body.errors[0].message).toContain('Please enter email in format ( abc@successive.tech )special characters ( . -)allowed')
-    expect(res.body.data.login).toEqual(null)
+    expect(errors[0].message).toContain('Please enter email in format ( abc@successive.tech )special characters ( . -)allowed')
+    expect(data.login).toEqual(null)
   })
 
   it('try to login with wrong email', async () => {

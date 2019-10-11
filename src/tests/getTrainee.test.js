@@ -23,13 +23,14 @@ describe('get All trainees successfully', () => {
       .send({
         query: getData.success
       })
-    expect(res.body.data.getTrainee).toHaveProperty('data')
-    expect(res.body.data.getTrainee.data).toHaveProperty('count')
-    expect(res.body.data.getTrainee.data).toHaveProperty('records')
-    expect(res.body.data.getTrainee).toHaveProperty('message')
-    expect(res.body.data.getTrainee.message).toEqual('Successfully fetched trainees')
-    expect(res.body.data.getTrainee).toHaveProperty('status')
-    expect(res.body.data.getTrainee.status).toEqual('200')
+    const { body: { data: { getTrainee } } } = res
+    expect(getTrainee).toHaveProperty('data')
+    expect(getTrainee.data).toHaveProperty('count')
+    expect(getTrainee.data).toHaveProperty('records')
+    expect(getTrainee).toHaveProperty('message')
+    expect(getTrainee.message).toEqual('Successfully fetched trainees')
+    expect(getTrainee).toHaveProperty('status')
+    expect(getTrainee.status).toEqual('200')
     done()
   })
 })

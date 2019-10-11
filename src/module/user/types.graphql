@@ -1,0 +1,25 @@
+type user {
+    name: String
+    _id: ID
+    email: String
+    role: String
+    createdBy: userName
+    createdAt: String
+    updatedBy: userName
+    updatedAt: String
+    originalID: String
+}
+
+type GetMe {
+    data: user
+    message: String
+    status: String
+}
+
+input userLoginInput {
+    email: String!
+    password: String!
+}
+type userName {
+    name: String
+}

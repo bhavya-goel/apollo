@@ -1,0 +1,23 @@
+type Query {
+    getTrainee(skip: Int, limit: Int, sort: Int): AllTraineeGet
+    me: GetMe
+    login(input: userLoginInput!): loginResponse
+}
+
+type Mutation {
+    createTrainee(input: InputtraineeDetail!): GetMe
+    updateTrainee(input: InputupdateDetails!): traineeResponse
+    deleteTrainee(id: String!): traineeResponse
+}
+
+type Subscription {
+    traineeAdded: traineeAddResponse
+    traineeDeleted: traineeSubscribeResponse
+    traineeUpdated: traineeSubscribeResponse
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

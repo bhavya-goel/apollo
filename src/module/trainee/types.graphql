@@ -1,0 +1,43 @@
+type data {
+    count: Int
+    records: [user]!
+}
+
+type AllTraineeGet {
+   message: String
+   status: String
+   data: data
+}
+
+type traineeResponse {
+    message: String
+    status: String
+    data: id
+}
+
+type loginResponse {
+    data: String
+    message: String
+    status: String
+}
+
+type id {
+    id: String
+}
+
+input InputtraineeDetail {
+    email: String
+    name: String
+    password: String
+}
+
+input InputupdateDetails{
+    id: String
+    dataToUpdate: InputtraineeDetail
+}
+type traineeAddResponse {
+    result: GetMe
+}
+type traineeSubscribeResponse {
+    result: traineeResponse
+}
